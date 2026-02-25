@@ -23,6 +23,7 @@ import Modal from './Modal/Modal';
 import Error from './Error/Error';
 import Loader from './Loader';
 import NewestProduct from './NewestProduct/NewestProduct';
+import ImageZoomModal from './ImageZoomModal/ImageZoomModal';
 
 export {
   Navbar,
@@ -50,4 +51,5 @@ export {
   Error,
   Loader,
   NewestProduct,
+  ImageZoomModal,
 };

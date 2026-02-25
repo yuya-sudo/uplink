@@ -1,0 +1,157 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modalContent {
+  background: var(--white);
+  border-radius: var(--borderRadius);
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-4);
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid var(--grey-200);
+  background: var(--white);
+  border-radius: var(--borderRadius) var(--borderRadius) 0 0;
+}
+
+.zoomControls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.zoomButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--grey-300);
+  background: var(--white);
+  border-radius: var(--borderRadius);
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 1.25rem;
+  color: var(--grey-600);
+}
+
+.zoomButton:hover:not(:disabled) {
+  background: var(--primary-50);
+  border-color: var(--primary-300);
+  color: var(--primary-600);
+}
+
+.zoomButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.zoomLevel {
+  font-weight: 600;
+  color: var(--grey-700);
+  min-width: 3rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.closeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  background: var(--red-light);
+  color: var(--red-dark);
+  border-radius: var(--borderRadius);
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 1.5rem;
+}
+
+.closeButton:hover {
+  background: var(--red-dark);
+  color: var(--white);
+}
+
+.imageContainer {
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  min-height: 300px;
+  max-height: 70vh;
+}
+
+.zoomedImage {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  cursor: grab;
+}
+
+.zoomedImage:active {
+  cursor: grabbing;
+}
+
+@media screen and (min-width: 768px) {
+  .modalContent {
+    max-width: 80vw;
+    max-height: 85vh;
+  }
+
+  .imageContainer {
+    min-height: 400px;
+    max-height: 75vh;
+  }
+
+  .zoomButton {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.5rem;
+  }
+
+  .closeButton {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.75rem;
+  }
+
+  .zoomLevel {
+    font-size: 1rem;
+    min-width: 4rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .modalContent {
+    max-width: 70vw;
+    max-height: 80vh;
+  }
+
+  .imageContainer {
+    min-height: 500px;
+    max-height: 70vh;
+  }
+}

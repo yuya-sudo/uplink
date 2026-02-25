@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { getSingleProductService } from '../../Services/services';
 import styles from './SingleProductPage.module.css';
-import { Error, Price } from '../../components';
+import { Error, Price, ImageZoomModal } from '../../components';
 import {
   LOGIN_TOAST,
   calculateDiscountPercent,
@@ -36,6 +36,7 @@ const SingleProductPage = () => {
   const [activeColorObj, setActiveColorObj] = useState(null);
   const [isWishlistBtnDisable, setIsWishlistBtnDisable] = useState(false);
   const [isCartBtnDisable, setIsCartBtnDisable] = useState(false);
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
 
   const fetchSingleProduct = async () => {
     setSingleProductState({ ...singleProductState, isSinglePageLoading: true });
@@ -156,10 +157,33 @@ const SingleProductPage = () => {
 
   const handleColorClick = (colorData) => setActiveColorObj(colorData);
 
+  const handleImageClick = () => {
+    setIsImageModalOpen(true);
+  };
+
+  const handleCloseImageModal = () => {
+    setIsImageModalOpen(false);
+  };
+
   return (
     <main className={`container half-page ${styles.productPageCenter}`}>
+      <ImageZoomModal 
+        isOpen={isImageModalOpen}
+        onClose={handleCloseImageModal}
+        imageSrc={image}
+        imageAlt={name}
+      />
+      
       <div className={styles.imageContainer}>
-        <img src={image} alt={name} />
+        <img 
+          src={image} 
+          alt={name} 
+          onClick={handleImageClick}
+          className={styles.clickableImage}
+        />
+        <div className={styles.zoomHint}>
+          <span>Haz clic para ampliar</span>
+        </div>
       </div>
 
       <div className={styles.productContent}>
